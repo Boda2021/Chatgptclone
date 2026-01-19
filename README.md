@@ -1,7 +1,7 @@
 # ChatGPT Clone
 
 A modern ChatGPT-like interface built with Next.js, featuring a two-column layout with conversation management and persistent chat history. Powered by Grok-4-fast via the AI Builder API.
-
+<img width="933" height="699" alt="Screenshot 2026-01-19 at 15 40 48" src="https://github.com/user-attachments/assets/b13d19c9-c358-4c5f-9bda-9f3aabaf8466" />
 ## Features
 
 - 🎨 **Two-Column Interface**: Left sidebar for conversations, right panel for chat
