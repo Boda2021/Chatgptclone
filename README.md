@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ChatGPT Clone
+
+A modern ChatGPT-like interface built with Next.js, featuring a two-column layout with conversation management and persistent chat history. Powered by Grok-4-fast via the AI Builder API.
+
+## Features
+
+- 🎨 **Two-Column Interface**: Left sidebar for conversations, right panel for chat
+- 💬 **Conversation Management**: Create, select, and delete conversations
+- 💾 **Persistent Storage**: All conversations are saved to localStorage
+- 🤖 **Grok-4-fast Integration**: Powered by AI Builder API
+- 🎯 **Modern UI**: Clean, dark-themed interface with smooth animations
+- ⚡ **Real-time Chat**: Stream-like experience with loading indicators
+
+## Prerequisites
+
+- Node.js 18+ and npm
+- AI Builder API token (get one from [https://aibuilder.space](https://aibuilder.space))
 
 ## Getting Started
 
-First, run the development server:
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. **Set up your API token**:
+   - Option 1: Enter your token directly in the app's header (it will be saved to localStorage)
+   - Option 2: Create a `.env.local` file in the root directory:
+     ```
+     AI_BUILDER_TOKEN=your_token_here
+     NEXT_PUBLIC_AI_BUILDER_API_URL=https://api.aibuilder.space/backend
+     ```
+
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**:
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## Project Structure
+
+```
+chatgpt-clone/
+├── app/
+│   ├── api/
+│   │   └── chat/
+│   │       └── route.ts          # API route for chat completions
+│   ├── globals.css                # Global styles
+│   ├── layout.tsx                 # Root layout
+│   └── page.tsx                   # Main page component
+├── components/
+│   ├── ChatInterface.tsx          # Chat UI component
+│   └── ConversationSidebar.tsx    # Sidebar component
+├── lib/
+│   ├── api.ts                     # API client functions
+│   └── storage.ts                 # localStorage utilities
+├── types/
+│   └── index.ts                   # TypeScript type definitions
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Set API Token**: Enter your AI Builder API token in the header input field
+2. **Start New Chat**: Click "New Chat" button in the sidebar
+3. **Send Messages**: Type your message and press Enter (Shift+Enter for new line)
+4. **Manage Conversations**: 
+   - Click on any conversation in the sidebar to switch
+   - Hover over a conversation and click the trash icon to delete
+   - Conversations are automatically saved
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## API Configuration
 
-## Learn More
+The app uses the AI Builder API with the following endpoint:
+- **Endpoint**: `/v1/chat/completions`
+- **Model**: `grok-4-fast`
+- **Authentication**: Bearer token (AI_BUILDER_TOKEN)
 
-To learn more about Next.js, take a look at the following resources:
+You can customize the API base URL by setting `NEXT_PUBLIC_AI_BUILDER_API_URL` in your environment variables.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technologies Used
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Next.js 16** - React framework with App Router
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **AI Builder API** - Backend API for chat completions
 
-## Deploy on Vercel
+## Data Storage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Conversations are stored in the browser's localStorage under the key `chatgpt-clone-conversations`. The API token is stored separately under `ai_builder_token`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Building for Production
+
+```bash
+npm run build
+npm start
+```
+
+## License
+
+MIT
